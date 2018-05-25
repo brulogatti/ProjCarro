@@ -27,9 +27,9 @@ table tr:nth-child(even){
 	
 	<table>
 		<tr>
-			<td><strong>ID</strong><td>
-			<td><strong>Modelo</strong><td>
-			<td><strong>Nome</strong><td>
+			<td><strong>ID</strong></td>
+			<td><strong>Modelo</strong></td>
+			<td><strong>Nome</strong></td>
 		</tr>
 		<tr nf-repeat="x in names">
 			<td>{{ x.id }}</td>
