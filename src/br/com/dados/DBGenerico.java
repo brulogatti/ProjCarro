@@ -76,6 +76,7 @@ public class DBGenerico {
 		Query query = entityManager.createNamedQuery(q);
 		entityManager.getTransaction().commit();
 		return query.getResultList();
+		//Consulta a query criada na classe carro e retorna os valores
 	}
 	
 	public <T> Object select (int id, Class<T> c1) {

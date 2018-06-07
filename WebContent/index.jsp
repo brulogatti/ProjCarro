@@ -31,7 +31,7 @@ table tr:nth-child(even){
 			<td><strong>Modelo</strong></td>
 			<td><strong>Nome</strong></td>
 		</tr>
-		<tr nf-repeat="x in names">
+		<tr ng-repeat="x in names">
 			<td>{{ x.id }}</td>
 			<td>{{ x.modelo }}</td>
 			<td>{{ x.nome }}</td>
@@ -52,6 +52,10 @@ table tr:nth-child(even){
 												$scope.names=response.data;
 											});
 						});
+		/*
+		Essa página não precisa de um servidor de aplicação, porque não precisa de 
+		processamento nenhum além do navegador de internet
+		*/
 	</script>
 
 </body>

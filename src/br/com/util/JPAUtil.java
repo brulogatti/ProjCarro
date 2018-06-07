@@ -6,7 +6,9 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 public class JPAUtil {
-	
+	/*Serve para receber a conexão, responsável por abrir a 
+	 * conexão e efetuar a transação com o bd
+	*/
 	private static final String PERSISTENCE_UNIT = "bdcarro";
 	private static ThreadLocal<EntityManager> threadEntityManager = new ThreadLocal<EntityManager>();
 	private static EntityManagerFactory entityManagerFactory;
