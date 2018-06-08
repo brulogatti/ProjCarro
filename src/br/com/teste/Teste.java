@@ -7,13 +7,13 @@ public class Teste {
 	
 	public static void main (String[]args) {
 		
-		Carro c = new Carro();
+		/*Carro c = new Carro();
 		
 		c.setModelo("FORD");
 		c.setNome("Ka");
 		
 		CarroCtrl controle = new CarroCtrl();
-		controle.insert(c);
+		controle.insert(c);*/
 		
 		for(Carro carro : new CarroCtrl().select(Carro.CONS_CARRO_ALL)) {
 			System.out.println("Id: " + carro.getId());

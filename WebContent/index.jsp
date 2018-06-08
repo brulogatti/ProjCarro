@@ -6,57 +6,67 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<script>src="js/angular.min.js"</script>
-<style>
-table, th, td {
-	border:1px solid grey;
-	border-collapse: collapse;
-	padding: 5px;
-}
-
-table tr:nth-child(odd){
-	background-color: #f1f1f1;
-}
-
-table tr:nth-child(even){
-	background-color:#ffffff;
-}
-</style>
-<body>
-	<div ng-app="myApp" ng-controller="customersCtrl">
+<script>src="angularjs/angular.min.js"</script>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.css">
 	
-	<table>
-		<tr>
-			<td><strong>ID</strong></td>
-			<td><strong>Modelo</strong></td>
-			<td><strong>Nome</strong></td>
-		</tr>
-		<tr ng-repeat="x in names">
-			<td>{{ x.id }}</td>
-			<td>{{ x.modelo }}</td>
-			<td>{{ x.nome }}</td>
-		</tr>
+<body>
+<br/><h1 align="center">Controle de Carros</h1><br/>
+	<div class="container" ng-app="myApp" ng-controller="customerCtrl">
+	<input type="button" class="btn btn-primary" value="Inserir" ng-click="cadastrar()"/>
+	<br/> <br/>
+	<table class="table table-hover">
+	<tr>
+		<td><strong>ID</strong></td>
+		<td><strong>Modelo</strong></td>
+		<td><strong>Nome</strong></td>
+		<td><strong>Opções</strong></td>
+	</tr>
+	<tr ng-repeat="x in names">
+		<td>{{ x.id }}</td>
+		<td>{{ x.modelo }}</td>
+		<td>{{ x.nome }}</td>
+		<td> <input type="button" class="btn btn-danger" value="Excluir" ng-click="del(x)"/>
+		<input type="button" class="btn btn-warning" value="Alterar" ng-click="selectTo(x)"></td>
+	</tr>
 	</table>
 	</div>
-	<script>
-	
-		var app = angular.module('myApp', []);
-		app
-				.controller(
-						'customersCtrl',
-						function($scope, $http){
-							$http
-									.get(
-											"http://localhost:8080/ProjWebInsertRest/REST/carro/select")
-											.then(function(response){
-												$scope.names=response.data;
-											});
-						});
-		/*
-		Essa página não precisa de um servidor de aplicação, porque não precisa de 
-		processamento nenhum além do navegador de internet
-		*/
-	</script>
 
+
+	<script>
+		var app = angular.module('myApp', []);
+		var linkservice="http://localhost:8080/ProjWebInsertRest/REST/carro/"
+			.controller(
+					'customerCtrl',
+					function($scope, $http){
+						$http
+								.get(
+										linkservice + 'select')
+								.then(function(response){
+									$scope.names=response.data;
+								});
+						$scope.cadastrar=function(){
+							window.sessionStorage.setItem('car',null);
+							window.location.href="cadastro.jsp";
+						}
+						
+						$scope.del=function(car){
+							var msg = confirm("Tem certeza que deseja excluir este registro?");
+							
+							if(msg==true){
+								$http.post(linkservice + 'delete', car).then(function(data){
+									alert('Registro Deletado!');
+									location.reload();
+								});
+		
+							}
+						}
+						
+						$scope.selectTo=function(car){
+							window.sessionStorage.setItem('car', JSON,stringify(car));
+							window.location.href='cadastro.jsp'
+						}
+					});
+		</script>
 </body>
 </html>
