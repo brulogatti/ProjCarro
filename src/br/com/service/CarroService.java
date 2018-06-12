@@ -36,4 +36,5 @@ public class CarroService {
 		new CarroCtrl().delete(carro);
 	}
 
+	//Procurar how to add CORS support on the server side in Java with Jersey ->codingpedia
 }
